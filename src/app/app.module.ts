@@ -22,6 +22,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MembersComponent } from './components/members/members.component';
 import { BooksComponent } from './components/books/books.component';
 import { BookDialogComponent } from './components/book-dialog/book-dialog.component';
+import { MemberDialogComponent } from './components/member-dialog/member-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BookDialogComponent } from './components/book-dialog/book-dialog.compon
     MembersComponent,
     BooksComponent,
     BookDialogComponent,
+    MemberDialogComponent,
   ],
   imports: [
     BrowserModule,
