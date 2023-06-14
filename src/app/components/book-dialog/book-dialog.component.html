@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Add new book</h1>
+
+<form [formGroup]="bookForm">
+  <div mat-dialog-content>
+    <mat-form-field class="hidden-input">
+      <mat-label>ID</mat-label>
+      <input formControlName="_id" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Author</mat-label>
+      <input formControlName="author" matInput />
+      <mat-error *ngIf="bookForm.get('author')?.hasError('required')">
+        Author is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput />
+      <mat-error *ngIf="bookForm.get('title')?.hasError('required')">
+        Title is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Released</mat-label>
+      <input formControlName="released" matInput />
+      <mat-error *ngIf="bookForm.get('released')?.hasError('required')">
+        Release year is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+</form>
+
+<div mat-dialog-actions [align]="'center'">
+  <button mat-raised-button color="primary" (click)="addBook()">
+    {{ actionButton }}
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close="">Close</button>
+</div>

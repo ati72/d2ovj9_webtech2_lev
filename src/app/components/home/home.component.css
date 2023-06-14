@@ -1,0 +1,11 @@
+.banner {
+  background-color: rgb(109, 187, 236);
+  height: 500px;
+  text-align: center;
+}
+.banner .title {
+  padding-top: 200px;
+  font-size: 72px;
+  color: white;
+  font-weight: bold;
+}
