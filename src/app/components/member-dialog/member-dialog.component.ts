@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Member } from 'src/app/model/Member';
 import { MemberService } from 'src/app/service/member.service';
 
@@ -17,15 +18,30 @@ export class MemberDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private memberService: MemberService,
     @Inject(MAT_DIALOG_DATA) public editData: any,
-    private dialogRef: MatDialogRef<MemberDialogComponent>
+    private dialogRef: MatDialogRef<MemberDialogComponent>,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.memberForm = this.formBuilder.group({
       _id: [],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      idCardNumber: ['', [Validators.required]],
+      firstName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.pattern('[a-zA-Z ]*'),
+        ],
+      ],
+      lastName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.pattern('[a-zA-Z ]*'),
+        ],
+      ],
+      idCardNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       address: ['', [Validators.required]],
     });
     if (this.editData) {
@@ -45,6 +61,10 @@ export class MemberDialogComponent implements OnInit {
       if (this.memberForm.valid) {
         this.memberService.save(this.memberForm.value as Member).subscribe({
           next: (res) => {
+            this.snackBar.open('Member added.', '', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+            });
             this.memberForm.reset();
             this.dialogRef.close('save');
           },
@@ -68,6 +88,10 @@ export class MemberDialogComponent implements OnInit {
       .update(this.memberForm.value, this.editData._id)
       .subscribe({
         next: (res) => {
+          this.snackBar.open('Member updated.', '', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+          });
           this.memberForm.reset();
           this.dialogRef.close('update');
         },

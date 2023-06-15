@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +52,7 @@ import { MemberDialogComponent } from './components/member-dialog/member-dialog.
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

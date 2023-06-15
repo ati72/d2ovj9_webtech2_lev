@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Book } from 'src/app/model/Book';
 import { BookService } from 'src/app/service/book.service';
 
@@ -17,15 +18,23 @@ export class BookDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private bookService: BookService,
     @Inject(MAT_DIALOG_DATA) public editData: any,
-    private dialogRef: MatDialogRef<BookDialogComponent>
+    private dialogRef: MatDialogRef<BookDialogComponent>,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.bookForm = this.formBuilder.group({
       _id: [],
-      author: ['', [Validators.required]],
+      author: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.pattern('[a-zA-Z ]*'),
+        ],
+      ],
       title: ['', [Validators.required]],
-      released: ['', [Validators.required]],
+      released: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     });
     if (this.editData) {
       this.actionButton = 'Update';
@@ -41,6 +50,10 @@ export class BookDialogComponent implements OnInit {
       if (this.bookForm.valid) {
         this.bookService.save(this.bookForm.value as Book).subscribe({
           next: (res) => {
+            this.snackBar.open('Book added.', '', {
+              duration: 3000,
+              verticalPosition: 'bottom',
+            });
             this.bookForm.reset();
             this.dialogRef.close('save');
           },
@@ -63,6 +76,10 @@ export class BookDialogComponent implements OnInit {
   updateBook() {
     this.bookService.update(this.bookForm.value, this.editData._id).subscribe({
       next: (res) => {
+        this.snackBar.open('Book updated.', '', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+        });
         this.bookForm.reset();
         this.dialogRef.close('update');
       },

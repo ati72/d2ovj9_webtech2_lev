@@ -11,7 +11,13 @@
       <mat-label>Author</mat-label>
       <input formControlName="author" matInput />
       <mat-error *ngIf="bookForm.get('author')?.hasError('required')">
-        Author is required
+        Author is required.
+      </mat-error>
+      <mat-error *ngIf="bookForm.get('author')?.hasError('minlength')">
+        Author must be longer than 2 letters.
+      </mat-error>
+      <mat-error *ngIf="bookForm.get('author')?.hasError('pattern')">
+        Author cannot contain numbers. English characters only.
       </mat-error>
     </mat-form-field>
 
@@ -19,15 +25,18 @@
       <mat-label>Title</mat-label>
       <input formControlName="title" matInput />
       <mat-error *ngIf="bookForm.get('title')?.hasError('required')">
-        Title is required
+        Title is required.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Released</mat-label>
+      <mat-label>Release year</mat-label>
       <input formControlName="released" matInput />
       <mat-error *ngIf="bookForm.get('released')?.hasError('required')">
-        Release year is required
+        Release year is required.
+      </mat-error>
+      <mat-error *ngIf="bookForm.get('released')?.hasError('pattern')">
+        Release year can only contain numbers.
       </mat-error>
     </mat-form-field>
   </div>
