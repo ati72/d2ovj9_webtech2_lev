@@ -5,10 +5,10 @@ It's a full stack library inventory management application with an Express backe
 
 ## Get Started
 
-Install the packages with `npm install`
-Start backend with `npm run backend`
-Start frontend with `ng serve`
-Navigate to <localhost:4200>
+Install the packages with `npm install`  
+Start backend with `npm run backend`  
+Start frontend with `ng serve`  
+Navigate to `localhost:4200`
 
 ## Features
 
