@@ -4,9 +4,9 @@ import express, { Request, Response } from 'express';
 export class BookController {
   getAllBooks = async (req: Request, res: Response) => {
     const books = await Book.find();
-    if (books.length <= 0) {
-      return res.status(404).json('No books found');
-    }
+    // if (books.length <= 0) {
+    //   return res.status(404).json('No books found');
+    // }
     res.json(books);
   };
 

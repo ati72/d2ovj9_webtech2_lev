@@ -4,9 +4,9 @@ import express, { Request, Response } from 'express';
 export class MemberController {
   getAllMembers = async (req: Request, res: Response) => {
     const members = await Member.find();
-    if (members.length <= 0) {
-      return res.status(404).json('No members found');
-    }
+    // if (members.length <= 0) {
+    //   return res.status(404).json('No members found');
+    // }
     res.json(members);
   };
 

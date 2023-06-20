@@ -1,6 +1,6 @@
 .banner {
   background-color: rgb(109, 187, 236);
-  height: 500px;
+  height: 50%;
   text-align: center;
 }
 .banner .title {
@@ -8,4 +8,11 @@
   font-size: 72px;
   color: white;
   font-weight: bold;
+}
+
+.info-text {
+  text-align: center;
+  padding-top: 150px;
+  color: rgb(109, 187, 236);
+  font-size: 42px;
 }
